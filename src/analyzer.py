@@ -65,20 +65,6 @@ from src.schemas.report_schema import AnalysisReportSchema
 from src.market_context import get_market_role, get_market_guidelines
 from src.services.daily_market_context import format_daily_market_context_prompt_section
 from src.market_phase_prompt import format_market_phase_prompt_section
-#自己加的
-from src.storage import get_cached_analysis
-
-# 1. 先查缓存（自己加的）
-cached_result = get_cached_analysis(stock_code, date)
-if cached_result:
-    print(f"✅ 命中缓存，跳过 LLM 调用: {stock_code}")
-    return cached_result
-
-# 2. 没缓存再跑 AI（自己加的）
-result = call_llm(prompt)
-
-# 3. 存缓存（自己加的）
-save_cached_analysis(stock_code, date, result)
 
 logger = logging.getLogger(__name__)
 
